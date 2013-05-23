@@ -105,15 +105,9 @@
     if (zi && zi != "auto") {
       info.zIndex = parseInt(zi, 10);
     }
-    while (obj) {
-      var borderLeftWidth = parseInt(_getStyle(obj, "borderLeftWidth"), 10);
-      var borderTopWidth = parseInt(_getStyle(obj, "borderTopWidth"), 10);
-      info.left += isNaN(obj.offsetLeft) ? 0 : obj.offsetLeft;
-      info.left += isNaN(borderLeftWidth) ? 0 : borderLeftWidth;
-      info.top += isNaN(obj.offsetTop) ? 0 : obj.offsetTop;
-      info.top += isNaN(borderTopWidth) ? 0 : borderTopWidth;
-      obj = obj.offsetParent;
-    }
+    var pos = $(obj).offset();
+    info.left = pos.left;
+    info.top = pos.top;
     return info;
   };
   var _noCache = function(path) {
