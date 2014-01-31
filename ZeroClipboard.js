@@ -455,12 +455,14 @@
     }
     return this;
   };
-  if (typeof define === "function" && define.amd) {
-    define([ "require", "exports", "module" ], function(require, exports, module) {
-      _amdModuleId = module && module.id || null;
-      return ZeroClipboard;
-    });
-  } else if (typeof module !== "undefined" && module) {
+  // if (typeof define === "function" && define.amd) {
+  //   define([ "require", "exports", "module" ], function(require, exports, module) {
+  //     _amdModuleId = module && module.id || null;
+  //     return ZeroClipboard;
+  //   });
+  // } else
+
+  if (typeof module !== "undefined" && module) {
     _cjsModuleId = module.id || null;
     module.exports = ZeroClipboard;
   } else {
