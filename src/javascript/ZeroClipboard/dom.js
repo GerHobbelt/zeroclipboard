@@ -55,7 +55,7 @@ var _bridge = function () {
     container.id = "global-zeroclipboard-html-bridge";
     container.setAttribute("class", "global-zeroclipboard-container");
     container.setAttribute("data-clipboard-ready", false);
-    container.style.position = "absolute";
+    container.style.position = client.options.position || "absolute";
     container.style.left = "-9999px";
     container.style.top = "-9999px";
     container.style.width = "15px";

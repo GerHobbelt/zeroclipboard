@@ -1,10 +1,10 @@
 /*!
 * ZeroClipboard
 * The ZeroClipboard library provides an easy way to copy text to the clipboard using an invisible Adobe Flash movie and a JavaScript interface.
-* Copyright (c) 2013 Jon Rohan, James M. Greene
+* Copyright (c) 2014 Jon Rohan, James M. Greene
 * Licensed MIT
 * http://zeroclipboard.org/
-* v1.2.0-beta.4
+* v1.1.9
 */
 (function() {
   "use strict";
@@ -263,7 +263,7 @@
   var _setHandCursor = function(enabled) {
     if (this.ready()) this.flashBridge.setHandCursor(enabled);
   };
-  ZeroClipboard.version = "1.2.0-beta.4";
+  ZeroClipboard.version = "1.1.9";
   var _defaults = {
     moviePath: "ZeroClipboard.swf",
     trustedOrigins: null,
@@ -313,7 +313,7 @@
       container.id = "global-zeroclipboard-html-bridge";
       container.setAttribute("class", "global-zeroclipboard-container");
       container.setAttribute("data-clipboard-ready", false);
-      container.style.position = "absolute";
+      container.style.position = client.options.position || "absolute";
       container.style.left = "-9999px";
       container.style.top = "-9999px";
       container.style.width = "15px";
@@ -455,14 +455,12 @@
     }
     return this;
   };
-  // if (typeof define === "function" && define.amd) {
-  //   define([ "require", "exports", "module" ], function(require, exports, module) {
-  //     _amdModuleId = module && module.id || null;
-  //     return ZeroClipboard;
-  //   });
-  // } else
-
-  if (typeof module !== "undefined" && module) {
+  if (typeof define === "function" && define.amd) {
+    define([ "require", "exports", "module" ], function(require, exports, module) {
+      _amdModuleId = module && module.id || null;
+      return ZeroClipboard;
+    });
+  } else if (typeof module !== "undefined" && module) {
     _cjsModuleId = module.id || null;
     module.exports = ZeroClipboard;
   } else {
