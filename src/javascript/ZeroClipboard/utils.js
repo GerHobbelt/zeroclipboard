@@ -26,7 +26,7 @@ var _camelizeCssPropName = (function () {
  */
 var _getStyle = function (el, prop) {
   var value, camelProp, tagName, possiblePointers, i, len;
-  
+
   if (window.getComputedStyle) {
     value = window.getComputedStyle(el, null).getPropertyValue(prop);
   }
@@ -237,17 +237,22 @@ var _getDOMObjectPosition = function (obj) {
       pageXOffset = Math.round(document.documentElement.scrollLeft / zoomFactor);
       pageYOffset = Math.round(document.documentElement.scrollTop / zoomFactor);
     }
-    
+
     // `clientLeft`/`clientTop` are to fix IE's 2px offset in standards mode
     var leftBorderWidth = document.documentElement.clientLeft || 0;
     var topBorderWidth = document.documentElement.clientTop || 0;
 
     info.left = rect.left + pageXOffset - leftBorderWidth;
-    info.top = rect.top + pageYOffset - topBorderWidth;
+    if (ZeroClipboard.prototype._singleton.options.position === 'fixed') {
+      // ignore pageYOffset when fixed
+      info.top = rect.top + topBorderWidth;
+    } else {
+      info.top = rect.top + pageYOffset - topBorderWidth;
+    }
     info.width = "width" in rect ? rect.width : rect.right - rect.left;
     info.height = "height" in rect ? rect.height : rect.bottom - rect.top;
   }
-  
+
   return info;
 };
 

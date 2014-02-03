@@ -4,7 +4,7 @@
 * Copyright (c) 2014 Jon Rohan, James M. Greene
 * Licensed MIT
 * http://zeroclipboard.org/
-* v1.1.9
+* v1.2.0
 */
 (function() {
   "use strict";
@@ -150,7 +150,11 @@
       var leftBorderWidth = document.documentElement.clientLeft || 0;
       var topBorderWidth = document.documentElement.clientTop || 0;
       info.left = rect.left + pageXOffset - leftBorderWidth;
-      info.top = rect.top + pageYOffset - topBorderWidth;
+      if (ZeroClipboard.prototype._singleton.options.position === "fixed") {
+        info.top = rect.top + topBorderWidth;
+      } else {
+        info.top = rect.top + pageYOffset - topBorderWidth;
+      }
       info.width = "width" in rect ? rect.width : rect.right - rect.left;
       info.height = "height" in rect ? rect.height : rect.bottom - rect.top;
     }
@@ -263,7 +267,7 @@
   var _setHandCursor = function(enabled) {
     if (this.ready()) this.flashBridge.setHandCursor(enabled);
   };
-  ZeroClipboard.version = "1.1.9";
+  ZeroClipboard.version = "1.2.0";
   var _defaults = {
     moviePath: "ZeroClipboard.swf",
     trustedOrigins: null,
