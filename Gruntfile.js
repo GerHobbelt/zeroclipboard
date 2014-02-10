@@ -147,6 +147,7 @@ module.exports = function(grunt) {
   grunt.registerTask('travis',   ['test']);
 
   // Default task
-  grunt.registerTask('default',  ['jshint', 'clean', 'concat', 'uglify', 'mxmlc', 'template', 'chmod', 'unittest']);
+  // grunt.registerTask('default',  ['jshint', 'clean', 'concat', 'uglify', 'mxmlc', 'template', 'chmod', 'unittest']);
+  grunt.registerTask('default',  ['jshint', 'clean', 'concat', 'uglify', 'mxmlc', 'template']);
 
 };
