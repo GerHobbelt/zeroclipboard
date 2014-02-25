@@ -75,10 +75,12 @@ var _bridge = function () {
  * returns object instance
  */
 ZeroClipboard.prototype.resetBridge = function () {
-  this.htmlBridge.style.left = "-9999px";
-  this.htmlBridge.style.top = "-9999px";
-  this.htmlBridge.removeAttribute("title");
-  this.htmlBridge.removeAttribute("data-clipboard-text");
+  if (this.htmlBridge) {
+    this.htmlBridge.style.left = "-9999px";
+    this.htmlBridge.style.top = "-9999px";
+    this.htmlBridge.removeAttribute("title");
+    this.htmlBridge.removeAttribute("data-clipboard-text");
+  }
   _removeClass(currentElement, this.options.activeClass);
   currentElement = null;
   this.options.text = null;
@@ -113,11 +115,13 @@ ZeroClipboard.prototype.reposition = function () {
   var pos = _getDOMObjectPosition(currentElement);
 
   // new css
-  this.htmlBridge.style.top    = pos.top + "px";
-  this.htmlBridge.style.left   = pos.left + "px";
-  this.htmlBridge.style.width  = pos.width + "px";
-  this.htmlBridge.style.height = pos.height + "px";
-  this.htmlBridge.style.zIndex = pos.zIndex + 1;
+  if (this.htmlBridge) {
+    this.htmlBridge.style.top    = pos.top + "px";
+    this.htmlBridge.style.left   = pos.left + "px";
+    this.htmlBridge.style.width  = pos.width + "px";
+    this.htmlBridge.style.height = pos.height + "px";
+    this.htmlBridge.style.zIndex = pos.zIndex + 1;
+  }
 
   this.setSize(pos.width, pos.height);
 

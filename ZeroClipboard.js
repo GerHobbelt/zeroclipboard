@@ -4,7 +4,7 @@
 * Copyright (c) 2014 Jon Rohan, James M. Greene
 * Licensed MIT
 * http://zeroclipboard.org/
-* v1.2.1
+* v1.2.2
 */
 (function() {
   "use strict";
@@ -267,7 +267,7 @@
   var _setHandCursor = function(enabled) {
     if (this.ready()) this.flashBridge.setHandCursor(enabled);
   };
-  ZeroClipboard.version = "1.2.1";
+  ZeroClipboard.version = "1.2.2";
   var _defaults = {
     moviePath: "ZeroClipboard.swf",
     trustedOrigins: null,
@@ -330,10 +330,12 @@
     client.flashBridge = document["global-zeroclipboard-flash-bridge"] || container.children[0].lastElementChild;
   };
   ZeroClipboard.prototype.resetBridge = function() {
-    this.htmlBridge.style.left = "-9999px";
-    this.htmlBridge.style.top = "-9999px";
-    this.htmlBridge.removeAttribute("title");
-    this.htmlBridge.removeAttribute("data-clipboard-text");
+    if (this.htmlBridge) {
+      this.htmlBridge.style.left = "-9999px";
+      this.htmlBridge.style.top = "-9999px";
+      this.htmlBridge.removeAttribute("title");
+      this.htmlBridge.removeAttribute("data-clipboard-text");
+    }
     _removeClass(currentElement, this.options.activeClass);
     currentElement = null;
     this.options.text = null;
@@ -346,11 +348,13 @@
   ZeroClipboard.prototype.reposition = function() {
     if (!currentElement) return false;
     var pos = _getDOMObjectPosition(currentElement);
-    this.htmlBridge.style.top = pos.top + "px";
-    this.htmlBridge.style.left = pos.left + "px";
-    this.htmlBridge.style.width = pos.width + "px";
-    this.htmlBridge.style.height = pos.height + "px";
-    this.htmlBridge.style.zIndex = pos.zIndex + 1;
+    if (this.htmlBridge) {
+      this.htmlBridge.style.top = pos.top + "px";
+      this.htmlBridge.style.left = pos.left + "px";
+      this.htmlBridge.style.width = pos.width + "px";
+      this.htmlBridge.style.height = pos.height + "px";
+      this.htmlBridge.style.zIndex = pos.zIndex + 1;
+    }
     this.setSize(pos.width, pos.height);
     return this;
   };
