@@ -6,7 +6,9 @@
     "license": "MIT",
     "main": "./dist/ZeroClipboard.js",
     "scripts": [
-        "./dist/ZeroClipboard.js",
+        "./dist/ZeroClipboard.js"
+    ],
+    "files": [
         "./dist/ZeroClipboard.swf"
     ],
     "repository": "Retsly/zeroclipboard"
