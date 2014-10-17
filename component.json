@@ -1,0 +1,13 @@
+{
+    "name": "zeroclibboard",
+    "version": "2.1.6",
+    "dependencies": {
+    },
+    "license": "MIT",
+    "main": "./dist/ZeroClipboard.js",
+    "scripts": [
+        "./dist/ZeroClipboard.js",
+        "./dist/ZeroClipboard.swf"
+    ],
+    "repository": "Retsly/zeroclipboard"
+}
